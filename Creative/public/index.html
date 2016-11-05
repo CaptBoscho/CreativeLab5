@@ -1,108 +1,37 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>News</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/Avatar_Style.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-    <script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-    <script src="javascripts/facebook.js"</script>
-  </head>
-  <body ng-app="News">
+<head>
+  <title>Facebook</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="javascripts/app.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/Avatar.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body ng-app="Creative" ng-controller="MainCtrl">
+  <div>
+     <p class='login'> {{test}} </p>
+  </div>
+  <div class = "row">
+  <h1 class='login'>Welcome to --- Book of Faces</h1>
+  </div>
+  <div class = "row">
+  <h1 class='login'>Register here</h1>
+  <form name='userForm' class='row'>
+      <input placeholder='Name' ng-model='registerName' class='input_style col-xs-12 col-sm-6       col-md-4'/>
+      <input placeholder='Password' ng-model='registerPassword' class='col-xs-12 col-sm-6 col-md-3        input_style'/>
+      <input placeholder='Image Url' ng-model='registerUrl' class='col-xs-7 col-md-3 input_style'/>
 
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <ui-view></ui-view>
-
-	<script type="text/ng-template" id="/login.html">
-
-	  <div class='container text-center form'>
-    <div class='row'>
-    <h1 class='login'>Log In --- Book of Faces</h1>
-    </div>
-      <form name='userForm' class='row'>
-      <input placeholder='Name' ng-model='userName' class='input_style col-xs-12 col-sm-6 	col-md-4'/>
-      <input placeholder='Email' ng-model='userEmail' class='col-xs-12 col-sm-6 col-md-3 	input_style'/>
-      <input placeholder='Image Url' ng-model='userUrl' class='col-xs-7 col-md-3 input_style'/>
-
-      <a ng-href="#/home" ng-click='LogIn(UserName)' class="btn btn-info" class='col-md-2 col-xs-5'>Log In</a>
+      <a ng-href="#/home" ng-click='SignUp()' class="btn btn-info" class='col-md-2 col-xs-5'>Register User</a>
     </form>
+  </div>
 
-
-    </div>
-
-
-	</script>
-
-
-	<script type="text/ng-template" id="/home.html">
-    <form ng-submit="toLogIn()" style = "margin-top30px;">
-  		<a ng-click="toLogIn()" href="#/login" class="btn btn-info" role="button">Switch User</a>
-  	</form>
-
-        <div class="page-header">
-          <h1 class="headText">What's New?</h1>
-        </div>
-
-
-
-
-        <form ng-submit="addPost()" style = "margin-top30px;">
-          <input type="text" ng-model="formContent"></input>
-        <button type="submit">Post</button>
-        </form>
-      <div> {{test}} </div>
-      <div class="formPosts">
-      <div class="postContent" ng-repeat="post in posts | orderBy: '-upvotes'">
-        <img class="AvatarImage" ng-src="{{post.avatarUrl}}" />
-        {{post.user}}
-        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
-          {{post.title}} - upvotes: {{post.upvotes}}
-         <a href="#/posts/{{posts.indexOf(post)}}">Comments</a>
-      </div>
-    </div>
-        </script>
-
-      <script type="text/ng-template" id="/posts.html">
-
-        <form style = "margin-top30px;">
-          <a ng-href="#/home" class="btn btn-info" role="button">Home</a>
-        </form>
-
-      <div class="page-header headText">
-        <h3>
-          <img class="AvatarImageHeader" ng-src="{{post.avatarUrl}}" />
-          {{post.user}} -
-          {{post.title}}
-        </h3>
-      </div>
-      <div class="formComments">
-      <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <img class="AvatarImage" ng-src="{{comment.url}}" />
-      {{comment.user}} -
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)">
-        </span>
-      {{comment.upvotes}}
-      <span style="font-size:20px; margin-left:10px;">
-      {{comment.body}}
-        </span>
-        </div>
-      </div>
-
-        <form class="formComments" ng-submit="addComment()" style="margin-top:30px;">
-        <h3>Add a new comment</h3>
-        <div class="form-group">
-        <input type="text" class="form-control" placeholder="Comment" ng-model="body">
-        </input>
-        </div>
-          <button type="submit" class="btn btn-primary">
-            Post
-          </button>
-        </form>
-
-        </script>
-
-    </div>
-    </div>
-  </body>
+  <div class = "row">
+    <h1 class='login'>Already Registered? Sign in below</h1>
+      <form name='userForm' class='row'>
+      <input placeholder='Name' ng-model='userName' class='input_style col-xs-12 col-sm-6       col-md-4'/>
+      <input placeholder='Password' ng-model='userPassword' class='col-xs-12 col-sm-6 col-md-3        input_style'/>
+      <a ng-href='#/home' ng-click='LogIn(userName)' class='btn btn-info' class='col-md-2 col-xs-5'>Sign in</a>
+      </form>
+  </div>
+</body>
 </html>
