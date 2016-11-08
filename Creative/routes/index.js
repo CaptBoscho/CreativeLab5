@@ -38,8 +38,10 @@ router.get('/users/:user', function(req, res) {
 
 router.post('/auth', function(req, res) {
   console.log('inside router');
-  res.redirect('comments.html');
+  res.redirect('home.html');
 });
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
