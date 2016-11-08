@@ -1,8 +1,4 @@
-var lM = 'bum';
-var eU = 'index.html';
-
 angular.module('Creative', [])
-
 .controller('MainCtrl', [
   '$scope', '$http', 
   function($scope, $http){
