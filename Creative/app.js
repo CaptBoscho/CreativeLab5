@@ -59,5 +59,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.get('/home', function(req, res){
+  res.sendFile('home.html');
+});
 
 module.exports = app;

@@ -1,11 +1,14 @@
 angular.module('Creative', [])
+
+
+
 .controller('MainCtrl', [
-  '$scope', '$http',
+  '$scope', '$http', 
   function($scope, $http){
    // $scope.test = 'Hello world!';
     $scope.currentUser = '';
     $scope.currentUrl = '';    
-    
+    $scope.currentId = ''; 
     $scope.CreateUser = function(user){
 	return $http.post('/users', user).success(function(data){
           console.log('Added ' + data);
@@ -15,24 +18,35 @@ angular.module('Creative', [])
     $scope.SignUp = function(){
 	var rN = $scope.registerName;
 	var rP = $scope.registerPassword;
-	var rU = $scope.registerURL;
+	var rU = $scope.registerUrl;
 	if(rN==='' || rP==='') {return;}
 	$scope.CreateUser({
 	  UserName : rN,
 	  Password : rP,
-	  Url : rU
+	  imageUrl : rU
 	});
 	$scope.registerName = '';
 	$scope.registerPassword = '';
-	$scope.registerURL = '';
+	$scope.registerUrl = '';
     };
 
     $scope.IdentifyUser = function(user){
-        return $http.get('/users', user).success(function(data){
-	  $scope.currentUser = data.UserName;
-	  $scope.currentUrl = data.Url;
-	  console.log($scope.currentUser + ' ' + $scope.currentUrl);
+	console.log("Identify Users " + user);
+        return $http.get('/users/'+user.UserName, user).success(function(data){
+	  if(data[0].Password === user.Password) {
+	    $scope.currentUser = data[0].UserName;
+	    $scope.currentUrl = data[0].imageUrl;
+	    $scope.currentId = data[0].id;
+	    $scope.userName = '';
+	    $scope.userPassword = '';
+	    //navigate to member's pag
+	    //$location.path('home.html');
+ 	  } else {
+	    //Invalid password
+	    alert("Alert: invalid username or password");
+	  }
         });
+	$location.path('home.html');
     };
 
     $scope.LogIn = function(){
@@ -42,7 +56,7 @@ angular.module('Creative', [])
 	$scope.IdentifyUser({
 	  UserName : uN,
 	  Password : pass,
-	  Url : ''
+	  imageUrl : ''
 	});
     };
   }

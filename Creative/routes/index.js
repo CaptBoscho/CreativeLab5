@@ -22,9 +22,10 @@ router.post('/users', function(req, res, next) {
 });
 
 router.param('user', function(req, res, next, id) {
-  var query = User.findById(id);
+  console.log('id: ' + id);
+  var query = User.find({'UserName' : id});
   query.exec(function (err, user){
-    if (err) { return next(err); }
+    if (err) { console.log(err); return next(err); }
     if (!user) { return next(new Error("can't find user")); }
     req.user = user;
     return next();
