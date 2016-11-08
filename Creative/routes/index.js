@@ -36,9 +36,14 @@ router.get('/users/:user', function(req, res) {
   res.json(req.user);
 });
 
+router.post('/auth', function(req, res) {
+  console.log('inside router');
+  res.redirect('comments.html');
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log('whoops');
   res.render('index', { title: 'Express' });
 });
 
