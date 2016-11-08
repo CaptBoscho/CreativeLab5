@@ -1,7 +1,4 @@
 angular.module('Creative', [])
-
-
-
 .controller('MainCtrl', [
   '$scope', '$http', 
   function($scope, $http){
