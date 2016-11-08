@@ -22,16 +22,8 @@
 
 }
 
-.login{
-  color: white;
-}
-
-.User-list {
-  list-style: none;
-}
-
-.headText {
-  color: rgb(128,21,21)
+.title{
+  color: rgb(128,21,21);
 }
 
 .postContent {
@@ -42,10 +34,20 @@ body
 {
     background: url("http://static.panoramio.com/photos/large/91302960.jpg") no-repeat center center fixed;
     background-size: 100% 100%;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  color: white;
 }
 
 
-.form
+#userForm
 {
 	text-align: center;
 	background-color: rgba(230, 255, 243, .5);
@@ -66,7 +68,7 @@ body
   font-size: 25px;
 }
 
-.formComments
+.formContent
 {
 	text-align: left;
 	background-color: rgba(230, 255, 243, .5);
@@ -76,10 +78,6 @@ body
   font-weight: bold;
   color: black;
   font-size: 25px;
-}
-
-.User-list {
-  list-style: none;
 }
 
 .Avatar {

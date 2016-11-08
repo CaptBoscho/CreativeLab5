@@ -5,15 +5,14 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
   <script src="javascripts/app.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/Avatar.css">
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body ng-app="Creative" ng-controller="MainCtrl">
   <div class = "row">
-  <h1 class='login'>Welcome to --- Book of Faces</h1>
+  <h1 class='title'>Welcome to --- Book of Faces</h1>
   </div>
-  <div class = "row">
+  <div id='userForm' class = "row">
   <h1 class='login'>Register here</h1>
-  <form name='userForm' class='row'>
+  <form class='row'>
       <input placeholder='Name' ng-model='registerName' class='input_style col-xs-12 col-sm-6       col-md-4'/>
       <input placeholder='Password' ng-model='registerPassword' class='col-xs-12 col-sm-6 col-md-3        input_style'/>
       <input placeholder='Image Url' ng-model='registerUrl' class='col-xs-7 col-md-3 input_style'/>
@@ -22,9 +21,9 @@
     </form>
   </div>
 
-  <div class = "row">
+  <div id='userForm' class = "row">
     <h1 class='login'>Already Registered? Sign in below</h1>
-      <form name='userForm' class='row'>
+      <form class='row'>
       <input placeholder='Name' ng-model='userName' class='input_style col-xs-12 col-sm-6       col-md-4'/>
       <input placeholder='Password' ng-model='userPassword' class='col-xs-12 col-sm-6 col-md-3        input_style'/>
       <a ng-href='#/home' ng-click='LogIn()' class='btn btn-info' class='col-md-2 col-xs-5'>Sign in</a>
