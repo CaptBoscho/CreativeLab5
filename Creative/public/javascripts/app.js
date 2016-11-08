@@ -6,6 +6,7 @@ angular.module('Creative', [])
     $scope.currentUser = '';
     $scope.currentUrl = '';    
     $scope.currentId = ''; 
+    $scope.loginMessage = 'Log-in Credentials correct';
     $scope.CreateUser = function(user){
 	return $http.post('/users', user).success(function(data){
           console.log('Added ' + data);
@@ -30,6 +31,8 @@ angular.module('Creative', [])
     $scope.IdentifyUser = function(user){
 	console.log("Identify Users " + user);
         return $http.get('/users/'+user.UserName, user).success(function(data){
+	  console.log(data);
+          if(data.length ===0) {alert("Invalid Username. Please register the user."); return;}
 	  if(data[0].Password === user.Password) {
 	    $scope.currentUser = data[0].UserName;
 	    $scope.currentUrl = data[0].imageUrl;
@@ -37,10 +40,13 @@ angular.module('Creative', [])
 	    $scope.userName = '';
 	    $scope.userPassword = '';
 	    //navigate to member's pag
-	    //$location.path('home.html');
- 	  } else {
+ 	    //$http.post('/auth', data[0]).success(function(data){
+	//	console.log('in');
+	  //  });
+	    console.log('after');
+	  } else {
 	    //Invalid password
-	    alert("Alert: invalid username or password");
+	    alert("Invalid Password");
 	  }
         });
 	$location.path('home.html');
@@ -56,6 +62,15 @@ angular.module('Creative', [])
 	  imageUrl : ''
 	});
     };
+
+    $scope.Enter = function(){
+	console.log('in Enter');
+    }   
+
+    $scope.ToLogIn = function(){
+	console.log('in tologin');
+    }
+
   }
 
 ]);

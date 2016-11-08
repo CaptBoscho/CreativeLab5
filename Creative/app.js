@@ -7,10 +7,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/users');
 require('./models/Users');
-
+require('./models/Comments');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -57,10 +56,6 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-});
-
-app.get('/home', function(req, res){
-  res.sendFile('home.html');
 });
 
 module.exports = app;

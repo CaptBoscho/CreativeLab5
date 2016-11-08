@@ -1,0 +1,23 @@
+<html>
+<head>
+  <title>Book of Faces</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="javascripts/app.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/Avatar.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body ng-app="Creative" ng-controller="MainCtrl">
+  <div class = "row">
+  <h1 class='login'>Welcome to --- Book of Faces</h1>
+  </div>
+  <div class = "row" id='good'>
+    <h1>Welcome to the site {{currentUsername}}</h1>
+    <a ng-href='/home.html' ng-click='Enter()' class='btn btn-info' class='col-md-2 col-xs-5'>Enter site</a>
+  </div>
+  <div class = "row" id='bad'>
+    <h1>{{loginMessage}}</h1>
+    <a ng-href='/index.html' ng-click='ToLogIn()' class='btn btn-info' class='col-md-2 col-xs-5'>Return to Login</a>
+  </div>
+</body>
+</html>
