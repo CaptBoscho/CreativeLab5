@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var FbPost = mongoose.model('FbPost');
 var currentId = {'curId' : ''};
 router.get('/users', function(req, res, next) {
   User.find(function(err, users){
