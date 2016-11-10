@@ -3,7 +3,9 @@
   <title>Book of Faces</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
   <script src="javascripts/app.js"></script>
+  <script src="javascripts/post.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/Avatar.css">
 </head>
 <body ng-app="Creative" ng-controller="MainCtrl">
@@ -30,8 +32,7 @@
   <div class="postContent" ng-repeat="post in posts | orderBy: '-upvotes'">
       <img class="AvatarImage" ng-src="{{post.avatarUrl}}" />
         {{post.user}}
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
-          {{post.title}} - upvotes: {{post.upvotes}}
+        <img src="{{post.imageUrl}}"> {{post.title}} - upvotes: {{post.upvotes}} <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
        <a href="#/posts/{{posts.indexOf(post)}}">Comments</a>
    </div>
    </div>

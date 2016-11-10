@@ -13,18 +13,28 @@ router.get('/users', function(req, res, next) {
 });
 
 router.post('/fbpost', function(req, res, next) {
+  console.log("In fbpost");
+  console.log(req.body);
   var poster = new FbPost(req.body);
   poster.save(function(err, user){
     if(err){
-	return next(err);}
+      console.log(err);
+	   return next(err);
+   }
+    console.log(poster);
     res.json(poster);
   });
 });
 
 router.get('/fbpost', function(req, res, next) {
+  console.log("In fbget");
   FbPost.find(function(err, fbpost){
-    if(err){ return next(err); }
+    if(err){ 
+      console.log(err);
+      return next(err); }
+    console.log(fbpost);
     res.json(fbpost);
+  });
 });
 
 router.post('/users', function(req, res, next) {

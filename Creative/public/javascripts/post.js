@@ -49,19 +49,21 @@ angular.module('Creative', ['ui.router'])
 
   .controller('PostCtrl', [
   '$scope',
+  '$http',
   '$stateParams',
   'postFactory',
   'userFactory',
-  function($scope, $stateParams, postFactory, userFactory){
+  function($scope, $http, $stateParams, postFactory, userFactory){
     $scope.post = postFactory.posts[$stateParams.id];
     $scope.addComment = function(){
       if($scope.body === '') { return; }
-      $scope.post.comments.push({
+      var postJson = {
         body: $scope.body,
         upvotes: 0,
         user: userFactory.name,
         url: userFactory.url
-      });
+      };
+      
       $scope.body = '';
     };
     $scope.incrementUpvotes = function(comment){
@@ -72,13 +74,23 @@ angular.module('Creative', ['ui.router'])
 
   .controller('MainCtrl', [
   '$scope',
+  '$http',
   'postFactory',
   'userFactory',
-  function($scope, postFactory, userFactory){
+  function($scope, $http, postFactory, userFactory){
 
   $scope.user = userFactory.name;
 
-	$scope.posts = postFactory.posts;
+  $scope.posts = postFactory.posts;
+
+  $http.get('fbpost').success(function(data) {
+     
+    for (i = 0; i < data.length; i++) {
+      $scope.posts.push(data[i]);
+      }
+  });
+  
+  
     //$scope.test = 'Hello world!';
      /*$scope.posts = [
        {title:'Post 1', upvotes:5},
@@ -88,14 +100,18 @@ angular.module('Creative', ['ui.router'])
        {title:'Post 5', upvotes:3} ]
    */
       $scope.addPost = function() {
-       $scope.posts.push({
+       var postJson = {
          title: $scope.formContent,
          imageUrl:$scope.Url,
          upvotes: 0,
          comments: [],
          user: userFactory.name,
          avatarUrl: userFactory.url
-       });
+       };
+       $scope.posts.push(postJson);
+       $http.post('fbpost', postJson).success(function(data) {
+         console.log("Success");
+       });  
          $scope.title='';
         //$scope.formContent='';
       };
@@ -112,7 +128,6 @@ angular.module('Creative', ['ui.router'])
        $scope.incrementUpvotes = function(post) {
          post.upvotes += 1;
        };
-
 
      }
 ]);

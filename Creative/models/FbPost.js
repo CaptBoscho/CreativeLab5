@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
 var FbPostSchema = new mongoose.Schema({
-  UserName : String,
-  Comment : String,
-  imageUrl : String
+  title : String,
+  imageUrl : String,
+  upvotes : Number,
+  comments : String,
+  user : String,
+  avaterUrl: String,
 });
 
 
