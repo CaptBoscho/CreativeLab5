@@ -12,6 +12,21 @@ router.get('/users', function(req, res, next) {
   });
 });
 
+router.post('/fbpost', function(req, res, next) {
+  var poster = new FbPost(req.body);
+  poster.save(function(err, user){
+    if(err){
+	return next(err);}
+    res.json(poster);
+  });
+});
+
+router.get('/fbpost', function(req, res, next) {
+  FbPost.find(function(err, fbpost){
+    if(err){ return next(err); }
+    res.json(fbpost);
+});
+
 router.post('/users', function(req, res, next) {
   var user = new User(req.body);
   user.save(function(err, user){
