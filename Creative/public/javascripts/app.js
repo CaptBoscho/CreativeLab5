@@ -3,14 +3,44 @@ angular.module('Creative', [])
   '$scope', '$http', 
   function($scope, $http){
    // $scope.test = 'Hello world!';
-    $scope.currentUser = '';
-    $scope.currentUrl = '';    
-    $scope.currentId = ''; 
-    $scope.loginMessage = lM;
-    $scope.entryUrl = eU;
+    $scope.loginMessage = 'Please Try Again' ;
+    $scope.entryUrl = '#';
+    $scope.currentId = {'curId' : ''};
+    $scope.currentImg;
+    $scope.currentName;
+    $http.get('/current', $scope.currentId).success(function(data){
+	console.log(data);
+	console.log(data.length);
+	if(data.length > 0) {
+	  $scope.currentName = data[0].UserName;
+	  $scope.currentImg = data[0].imageUrl;
+	}
+    });
+
     $scope.CreateUser = function(user){
+	$http.get('/users/'+user.UserName, user).success(function(data){
+	  if(data.length > 0) {
+	    $scope.entryUrl = '#';
+	    return;
+	  }
+	});
+	console.log('test3');
 	return $http.post('/users', user).success(function(data){
           console.log('Added ' + data);
+	  $scope.entryUrl = 'home.html';
+        });
+    };
+
+    $scope.SignUpHover = function() {
+	var user = {UserName :  $scope.registerName,
+	  Password : $scope.registerPassword,
+	  imageUrl : $scope.registerUrl
+	};
+	$http.get('/users/'+$scope.registerName, user).success(function(data){
+          if(data.length > 0) {
+            $scope.entryUrl = '#';
+            return;
+          }
         });
     };
 
@@ -24,9 +54,6 @@ angular.module('Creative', [])
 	  Password : rP,
 	  imageUrl : rU
 	});
-	$scope.registerName = '';
-	$scope.registerPassword = '';
-	$scope.registerUrl = '';
     };
 
     $scope.IdentifyUser = function(user){
@@ -40,7 +67,13 @@ angular.module('Creative', [])
 	  if(data[0].Password === user.Password) {
 	    $scope.currentUser = data[0].UserName;
 	    $scope.currentUrl = data[0].imageUrl;
-	    $scope.currentId = data[0].id;
+	    $scope.currentId = data[0]._id;
+	    console.log('test1 '+ data[0]._id);
+	    var id = {'curId' : data[0]._id};
+	    $http.post('/current', id).success(function(da){
+	      console.log('finished');
+	    });
+	    console.log('test2');
 	    $scope.userName = '';
 	    $scope.userPassword = '';
 	    //navigate to member's page
@@ -66,6 +99,12 @@ angular.module('Creative', [])
    $scope.CheckErrors = function(){
 	if($scope.entryUrl === '#'){
 	  alert("Invalid Username or Password");
+	}
+   };
+
+   $scope.RegistrationError = function(){
+	if($scope.entryUrl === '#'){
+	  alert("Username already in use.");
 	}
    };
 

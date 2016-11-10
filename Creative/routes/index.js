@@ -3,7 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-
+var currentId = {'curId' : ''};
 router.get('/users', function(req, res, next) {
   User.find(function(err, users){
     if(err){ return next(err); }
@@ -41,7 +41,25 @@ router.post('/auth', function(req, res) {
   res.redirect('home.html');
 });
 
+router.post('/current', function(req, res) {
+  console.log(req.body);
+  currentId = req.body;
+  console.log('post ' + currentId);
+  res.json(currentId);
+});
 
+router.get('/current', function(req, res, next) {
+  console.log('in get current ' + currentId.curId);
+  //res.json(currentId);
+  if(currentId.curId != '') {
+  var query = User.find({'_id' : currentId.curId});
+  query.exec(function (err, user){
+    if (err) { console.log(err); return next(err); }
+    if (!user) { return next(new Error("can't find user")); }
+    res.json(user);
+  });
+  }
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

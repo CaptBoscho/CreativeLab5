@@ -13,11 +13,11 @@
   <div id='userForm' class = "row">
   <h1 class='login'>Register here</h1>
   <form class='row'>
-      <input placeholder='Name' ng-model='registerName' class='input_style col-xs-12 col-sm-6       col-md-4'/>
-      <input placeholder='Password' ng-model='registerPassword' class='col-xs-12 col-sm-6 col-md-3        input_style'/>
+      <input placeholder='Name' ng-model='registerName' ng-blur="SignUpHover()" class='input_style col-xs-12 col-sm-6       col-md-4'/>
+      <input type="password"  placeholder='Password' ng-model='registerPassword' class='col-xs-12 col-sm-6 col-md-3        input_style'/>
       <input placeholder='Image Url' ng-model='registerUrl' class='col-xs-7 col-md-3 input_style'/>
 
-      <a ng-href="/home.html" ng-click='SignUp()' class="btn btn-info" class='col-md-2 col-xs-5'>Register User</a>
+      <a ng-href="/{{entryUrl}}" ng-click='RegistrationError()' class="btn btn-info" class='col-md-2 col-xs-5'>Register User</a>
     </form>
   </div>
 
@@ -25,7 +25,7 @@
     <h1 class='login'>Already Registered? Sign in below</h1>
       <form class='row'>
       <input placeholder='Name' ng-model='userName' ng-blur="LogIn()" class='input_style col-xs-12 col-sm-6       col-md-4'/>
-      <input placeholder='Password' ng-model='userPassword' ng-blur="LogIn()" class='col-xs-12 col-sm-6 col-md-3        input_style'/>
+      <input type = "password" placeholder='Password' ng-model='userPassword' ng-blur="LogIn()" class='col-xs-12 col-sm-6 col-md-3        input_style'/>
       <a ng-click = 'CheckErrors()' ng-href='/{{entryUrl}}' class='btn btn-info' class='col-md-2 col-xs-5'>Sign in</a>
       </form>
   </div>

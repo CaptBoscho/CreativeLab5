@@ -8,8 +8,13 @@
 </head>
 <body ng-app="Creative" ng-controller="MainCtrl">
   <form ng-submit="toLogIn()" style = "margin-top30px;">
-    <a ng-click="toLogIn()" href="#/login" class="btn btn-info" role="button">Log out</a>
+    <a ng-click="toLogIn()" href="index.html" class="btn btn-info" role="button">Log out</a>
   </form>
+
+  <div>
+    <img src = "{{currentImg}}">    
+    {{currentName}}
+  </div>
 
   <div class="page-header">
      <h1 class="title">Whats New?</h1>
